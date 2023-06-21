@@ -1,6 +1,4 @@
-import java.net.ContentHandlerFactory;
 import java.util.ArrayList;
-import java.util.Vector;
 
 public class App {
 
@@ -262,39 +260,56 @@ public class App {
         }
 
         //Cruzar poblaciones
+        System.out.println();
         System.out.println("Cruzando poblaciones...");
         int contador = 0;
         int largo = listaPoblaciones.size();
-        int ejem = listaHijos.size();
-        System.out.println("Largo de la lista: " + ejem);
         
+
         while(contador < largo){
-            System.out.println("Hola me caigo aqui ");
-            for(int i = 0; i < 36;i++){
-                if(i <= 18){
-                    listaHijos.get(contador).vector[i] = listaPoblaciones.get(contador).vector[i];
-                    
-                }
-                else{
-                    listaHijos.get(contador+1).vector[i] = listaPoblaciones.get(contador+1).vector[i];
+            listaHijos.add(new Poblacion());
+            if(contador == 1 || contador % 2 != 0){
+                listaHijos.get(contador).vector = listaPoblaciones.get(contador).vector;
+            }
+            else{
+                for(int i = 18; i < 36; i++){
+                    listaHijos.get(contador).vector[i] = listaPoblaciones.get(contador+1).vector[i];
                 }
             }
             contador++;
-            contador++;
         }
 
-        //mostrar vector
-        System.out.println("Vector de hijos");
-        int largo2 = listaHijos.size();
-        int cont2 = 0;
-        while(cont2 < largo2) {
-            for(int i = 0; i < 36; i++){
-                System.out.print(listaHijos.get(cont2).vector[i]);
+        //mutar poblaciones
+        System.out.println("Mutando poblaciones...");
+        for(int i = 0; i < listaHijos.size(); i++){
+            for(int j = 0; j < 36; j++){
+                if(Math.random() < 0.1){
+                    if(listaHijos.get(i).vector[j] == 0){
+                        listaHijos.get(i).vector[j] = 1;
+                    }
+                }
             }
         }
-        
 
-
+        //Seleccionar la mejor poblacion
+        System.out.println("Seleccionando la mejor poblacion...");
+        Double mejorCosto = 0.0;
+        Double mejorCosto2 = 0.0;
+        int mejorPoblacion = 0;
+        for(int i = 0; i < listaHijos.size(); i++){
+            for(int j = 0; j < 36; j++){
+                if(listaHijos.get(i).vector[j] == 1){
+                    mejorCosto = mejorCosto + listaComunas.get(i).getCosto();
+                }
+            }
+            if(mejorCosto > mejorCosto2){
+                mejorCosto2 = mejorCosto;
+                mejorPoblacion = i;
+            }
+        }
+        System.out.println();
+        System.out.println("La mejor poblacion es: " + mejorPoblacion);
+        System.out.println("El mejor costo es: " + mejorCosto2);
         System.out.println("FIN del programa");
         
     }
