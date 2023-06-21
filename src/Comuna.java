@@ -5,8 +5,10 @@ public class Comuna {
     public Double costo;
 
     // Constructor
-    public Comuna() {
-        
+    public Comuna(int id, String nombre, Double costo) {
+        this.id = id;
+        this.nombre = nombre;
+        this.costo = costo;
     }
 
     // Metodos
