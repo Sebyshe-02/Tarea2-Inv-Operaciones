@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Poblacion {
 
     public int[][] matriz = new int[6][6];
@@ -38,16 +40,6 @@ public class Poblacion {
         return false;
     }
 
-    //Cruzar poblacion
-    public Poblacion cruzarPoblacion(Poblacion poblacion){
-        Poblacion hijo = new Poblacion();
-        for(int i= 0; i < 5; i++){
-            for(int j= 0; j < 5; j++){
-                
-            }
-        }
-        return hijo;
-    }
 
     //Getter y Setter
     public int[][] getMatriz() {
@@ -55,6 +47,9 @@ public class Poblacion {
     }
 
     public void setMatriz(int[][] matriz2) {
+    }
+
+    public void add(ArrayList<Poblacion> listaPoblaciones) {
     }
 
     

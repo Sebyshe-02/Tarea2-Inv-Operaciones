@@ -1,4 +1,6 @@
+import java.net.ContentHandlerFactory;
 import java.util.ArrayList;
+import java.util.Vector;
 
 public class App {
 
@@ -258,6 +260,41 @@ public class App {
             }
        
         }
+
+        //Cruzar poblaciones
+        System.out.println("Cruzando poblaciones...");
+        int contador = 0;
+        int largo = listaPoblaciones.size();
+        int ejem = listaHijos.size();
+        System.out.println("Largo de la lista: " + ejem);
+        
+        while(contador < largo){
+            System.out.println("Hola me caigo aqui ");
+            for(int i = 0; i < 36;i++){
+                if(i <= 18){
+                    listaHijos.get(contador).vector[i] = listaPoblaciones.get(contador).vector[i];
+                    
+                }
+                else{
+                    listaHijos.get(contador+1).vector[i] = listaPoblaciones.get(contador+1).vector[i];
+                }
+            }
+            contador++;
+            contador++;
+        }
+
+        //mostrar vector
+        System.out.println("Vector de hijos");
+        int largo2 = listaHijos.size();
+        int cont2 = 0;
+        while(cont2 < largo2) {
+            for(int i = 0; i < 36; i++){
+                System.out.print(listaHijos.get(cont2).vector[i]);
+            }
+        }
+        
+
+
         System.out.println("FIN del programa");
         
     }
