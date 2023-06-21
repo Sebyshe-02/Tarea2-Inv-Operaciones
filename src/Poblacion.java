@@ -1,6 +1,7 @@
 public class Poblacion {
 
-    public int[][] matriz = new int[5][5];
+    public int[][] matriz = new int[6][6];
+    public int [] vector = new int[36];
 
     public Poblacion(){
 
@@ -9,30 +10,51 @@ public class Poblacion {
     //Metodos
     public boolean evaluarPoblacion() {
         
-        for(int i= 0; i < 5; i++){
-            for(int j= 0; j < 5; j++){
-                if(this.matriz[i][j-1] == 1){
+        for(int i = 0; i < 6; i++){
+            for(int j= 0; j < 6; j++){
+                int filaIzq = i -1;
+                int filaDer = i +1;
+                int columnaArriba = j -1;
+                int columnaAbajo = j +1; 
+                
+                //evaluar si existe una antena en la posicion actual o en las aledañas
+                if(this.matriz[i][j] == 1 ){
                     return true;
                 }
-                else if(this.matriz[i][j+1] == 1){
+                else if(columnaArriba >= 0 && this.matriz[i][j-1] == 1){
                     return true;
                 }
-                else if(this.matriz[i-1][j] == 1){
+                else if(columnaAbajo <= 6 && this.matriz[i][j+1] == 1){
                     return true;
                 }
-                else if(this.matriz[i+1][j] == 1){
+                else if(filaIzq >= 0 && this.matriz[i-1][j] == 1 && filaIzq >= 0){
                     return true;
                 }
-                else if(this.matriz[i][j] == 1){
+                else if(filaDer <= 6 && this.matriz[i+1][j] == 1 && filaDer <= 5){
                     return true;
                 }
             }
         }
         return false;
     }
+
+    //Cruzar poblacion
+    public Poblacion cruzarPoblacion(Poblacion poblacion){
+        Poblacion hijo = new Poblacion();
+        for(int i= 0; i < 5; i++){
+            for(int j= 0; j < 5; j++){
+                
+            }
+        }
+        return hijo;
+    }
+
     //Getter y Setter
     public int[][] getMatriz() {
         return this.matriz;
+    }
+
+    public void setMatriz(int[][] matriz2) {
     }
 
     

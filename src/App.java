@@ -6,6 +6,8 @@ public class App {
     public static void main(String[] args) throws Exception {
         
         ArrayList<Comuna> listaComunas = new ArrayList<Comuna>();
+        ArrayList<Poblacion> listaPoblaciones = new ArrayList<Poblacion>();  
+        ArrayList<Poblacion> listaHijos = new ArrayList<Poblacion>();
 
         Comuna comuna1 = new Comuna();
         comuna1.setId(2);
@@ -189,23 +191,28 @@ public class App {
         listaComunas.add(comuna36);
 
 
-        for(int i = 0; i < 5; i++) {
+        for(int i = 0; i < 36; i++) {
             System.out.println("ID: " + listaComunas.get(i).getId() + " Nombre: " + listaComunas.get(i).getNombre());
         }
+        
     
-        ArrayList<Poblacion> listaPoblaciones = new ArrayList<Poblacion>();  
+        //creacion de la lista de poblaciones
+        System.out.println("Creando poblaciones...");
 
-        //rellenar la matriz con ceros y la agrega a la lista
-        for(int cantPoblaciones = 0; cantPoblaciones < 5; cantPoblaciones++) {
+        for(int cantPoblaciones = 0; cantPoblaciones < 6; cantPoblaciones++) {
             listaPoblaciones.add(new Poblacion());
-            for(int i = 0; i < 5; i++) {
-                for(int j = 0; j < 5; j++){
+            for(int i = 0; i < 6; i++) {
+                for(int j = 0; j < 6; j++){
                     listaPoblaciones.get(cantPoblaciones).matriz[i][j] = 0;
                 }
-        }
+            }
+            //agregar la matriz a la lista
+            listaPoblaciones.get(cantPoblaciones).setMatriz(listaPoblaciones.get(cantPoblaciones).matriz);
         }
 
-        //rellenar cada matriz de la lista con unos con una probabilidad randon
+        //rellenar cada matriz de la lista con unos (antenas) con una probabilidad randon
+        System.out.println("Rellenando poblaciones...");
+
         for(int cantPoblaciones = 0; cantPoblaciones < 5; cantPoblaciones++) {
             for(int i = 0; i < 5; i++) {
                 for(int j = 0; j < 5; j++){
@@ -216,41 +223,42 @@ public class App {
             }
         }
         //mostrar el valor la lista de matrices
-        for(int cantPoblaciones = 0; cantPoblaciones < 5; cantPoblaciones++) {
+        System.out.println("Mostrando poblaciones...");
+
+        for(int cantPoblaciones = 0; cantPoblaciones < 6; cantPoblaciones++) {
             System.out.println("Matriz: " + (cantPoblaciones+1)); //sumar 1 para que no muestre 0
-            for(int i = 0; i < 5; i++) {
-                for(int j = 0; j < 5; j++){
+            for(int i = 0; i < 6; i++) {
+                for(int j = 0; j < 6; j++){
                     System.out.print(listaPoblaciones.get(cantPoblaciones).matriz[i][j]);
                 }
                 System.out.println();
             }
         }
-        //convertir la matriz en un vector 
-        for(int cantPoblaciones = 0; cantPoblaciones < 5; cantPoblaciones++) {
-            int[] vector = new int[25];
-            int contador = 0;
-            for(int i = 0; i < 5; i++) {
-                for(int j = 0; j < 5; j++){
-                    vector[contador] = listaPoblaciones.get(cantPoblaciones).matriz[i][j];
-                    contador++;
-                }
-            }
-            //mostrar el vector
-            System.out.println("Vector: " + (cantPoblaciones+1)); //sumar 1 para que no muestre 0
-            for(int i = 0; i < 25; i++) {
-                System.out.print(vector[i]);
-            }
-            System.out.println();
-        }
+        
 
         //Evolucion de la poblacion
-        for(int i= 0; i > numGeneraciones; i++){
-            if(listaPoblaciones.evaluarPoblacion() == true){
-                System.out.println("La poblacion se ha extinguido");
-                break;
-            }
+        listaPoblaciones.get(0).evaluarPoblacion();
+        System.out.print("Evolucionando poblaciones...");
 
+        for(int soluciones= 0; soluciones < numGeneraciones; soluciones++){
+            if(listaPoblaciones.get(soluciones).evaluarPoblacion()){
+                //convertir la matriz en un vector 
+                for(int i = 0; i < 6; i++) {
+                    for(int j = 0; j < 6; j++){
+                        listaPoblaciones.get(soluciones).vector[i*6+j] = listaPoblaciones.get(soluciones).matriz[i][j];
+                    }
+                }
+            }
+            //mostrar vector
+            System.out.println();
+            System.out.println("Mostrar vector " + soluciones);
+            
+            for(int i = 0; i < 36; i++) {
+                System.out.print(listaPoblaciones.get(soluciones).vector[i]);
+            }
+       
         }
+        System.out.println("FIN del programa");
         
     }
 }
