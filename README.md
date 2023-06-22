@@ -1,6 +1,6 @@
 ## Getting Started
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Para ejecutar el programa, solo tienes que darle clic a "Run" y se mostrará una lista con las comunas enumeradas junto a sus respectivos atributos. Además, se generan las matrices, se realiza la transformación a vector para su análisis, se presentan las ubicaciones de las antenas con sus atributos y, por último, se muestra un resumen de la mejor solución encontrada.
 
 ## Folder Structure
 
