@@ -48,13 +48,15 @@ public class App {
 
         
 
-
+        System.out.println("Lista de comunas de la ciudad de Valparaiso: ");
+        System.out.println(" ");
         for(int i = 0; i < 36; i++) {
-            System.out.println(i + "  ID: " + listaComunas.get(i).getId() + " Nombre: " + listaComunas.get(i).getNombre());
+            System.out.println(i +  " "+ "ID: " + listaComunas.get(i).getId() + " Nombre:   " + listaComunas.get(i).getNombre());
         }
         
     
         //creacion de la lista de poblaciones
+        System.out.println(" ");
         System.out.println("Creando poblaciones...");
 
         for(int cantPoblaciones = 0; cantPoblaciones < 6; cantPoblaciones++) {
@@ -82,9 +84,11 @@ public class App {
         }
         //mostrar el valor la lista de matrices
         System.out.println("Mostrando poblaciones...");
-
+        
         for(int cantPoblaciones = 0; cantPoblaciones < 6; cantPoblaciones++) {
-            System.out.println("Matriz: " + (cantPoblaciones+1)); //sumar 1 para que no muestre 0
+            System.out.println(" ");
+            System.out.println("Matriz " + (cantPoblaciones+1)); //sumar 1 para que no muestre 0
+            System.out.println(" ");
             for(int i = 0; i < 6; i++) {
                 for(int j = 0; j < 6; j++){
                     System.out.print(listaPoblaciones.get(cantPoblaciones).matriz[i][j]);
@@ -95,8 +99,9 @@ public class App {
         
 
         //Evolucion de la poblacion
-        listaPoblaciones.get(0).evaluarPoblacion();
+        System.out.println(" ");
         System.out.print("Evolucionando poblaciones...");
+        System.out.println(" ");
 
         for(int soluciones= 0; soluciones < numGeneraciones; soluciones++){
             if(listaPoblaciones.get(soluciones).evaluarPoblacion()){
@@ -109,7 +114,9 @@ public class App {
             }
             //mostrar vector
             System.out.println();
+            System.out.println();
             System.out.println("Mostrar vector " + soluciones);
+            System.out.println();
             
             for(int i = 0; i < 36; i++) {
                 System.out.print(listaPoblaciones.get(soluciones).vector[i]);
@@ -118,6 +125,7 @@ public class App {
         }
 
         //Cruzar poblaciones
+        System.out.println();
         System.out.println();
         System.out.println("Cruzando poblaciones...");
         int contador = 0;
@@ -151,6 +159,7 @@ public class App {
 
         //Seleccionar la mejor poblacion
         System.out.println("Seleccionando la mejor poblacion...");
+        System.out.println();
         Double maxCoste = 0.0;
         Double mejorCosto = 0.0;
         int mejorPoblacion = 0;
@@ -169,12 +178,15 @@ public class App {
         }
         System.out.println();
         System.out.println("La mejor poblacion es: " + mejorPoblacion);
+        System.out.println();
         System.out.println("El vector resultante es:");
         for(int i = 0; i < 36; i++){
             System.out.print(listaHijos.get(mejorPoblacion).vector[i]);
         }
         System.out.println();
+        System.out.println();
         System.out.println("El mejor costo es: " + mejorCosto);
+        System.out.println();
         System.out.println("FIN del programa.. ");
         
     }
